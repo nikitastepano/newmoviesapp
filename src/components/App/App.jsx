@@ -18,6 +18,7 @@ export default class App extends React.Component {
     query: '',
     activeButton: 'search',
     rated: JSON.parse(sessionStorage.getItem('rated') || JSON.stringify({})),
+    error: null,
   };
 
   componentDidMount() {
@@ -29,16 +30,24 @@ export default class App extends React.Component {
   }
 
   fetchMovies = (page = this.state.page, query = this.state.query) => {
-    this.setState({ loading: true });
-    getApiData(page, query).then((objectMovies) => {
-      this.setState({
-        page: objectMovies.page,
-        results: this.updateRating(objectMovies.results),
-        total_pages: objectMovies.total_pages,
-        total_results: objectMovies.total_results,
-        loading: false,
+    this.setState({ loading: true, error: null });
+    getApiData(page, query)
+      .then((objectMovies) => {
+        this.setState({
+          page: objectMovies.page,
+          results: this.updateRating(objectMovies.results),
+          total_pages: objectMovies.total_pages,
+          total_results: objectMovies.total_results,
+          loading: false,
+        });
+      })
+      .catch((err) => {
+        console.error('Fetch error:', err);
+        this.setState({
+          loading: false,
+          error: 'Something went wrong. Please try again later.',
+        });
       });
-    });
   };
 
   fetchMoviesDebounce = debounce((query) => {
@@ -90,11 +99,12 @@ export default class App extends React.Component {
   };
 
   render() {
-    const { results, janary, loading, page, total_results, query, activeButton, rated } = this.state;
+    const { results, janary, loading, page, total_results, query, activeButton, rated, error } = this.state;
 
     return (
       <div className="newmoviesapp">
         <Header handleButtonClick={this.handleButtonClick} activeButton={activeButton} />
+        {error && <div className="error">{error}</div>} {/* not a Fetch, sorry */}
         {activeButton === 'search' ? (
           <Search
             onRated={this.onRated}
