@@ -1,0 +1,68 @@
+{
+  "name": "moviesapp",
+  "private": true,
+  "version": "0.0.0",
+  "type": "module",
+  "scripts": {
+    "dev": "vite",
+    "build": "vite build",
+    "lint": "eslint . --ext js,jsx --report-unused-disable-directives --max-warnings 0",
+    "preview": "vite preview",
+    "deploy": "gh-pages -d dist",
+    "predeploy": "npm run build",
+    "lint:fix": "eslint . --ext js,jsx --fix",
+    "format": "prettier --write 'src/**/*.{js,jsx}'",
+    "prepare": "husky"
+  },
+  "dependencies": {
+    "antd": "^5.20.0",
+    "date-fns": "^3.6.0",
+    "gh-pages": "^6.1.1",
+    "react": "^18.3.1",
+    "react-dom": "^18.3.1"
+  },
+  "devDependencies": {
+    "@babel/plugin-proposal-private-property-in-object": "^7.21.11",
+    "@types/react": "^18.3.3",
+    "@types/react-dom": "^18.3.0",
+    "@vitejs/plugin-react": "^4.3.1",
+    "babel-eslint": "^10.1.0",
+    "eslint": "^8.57.0",
+    "eslint-config-airbnb": "^19.0.4",
+    "eslint-config-prettier": "^9.1.0",
+    "eslint-plugin-import": "^2.29.1",
+    "eslint-plugin-jsx-a11y": "^6.9.0",
+    "eslint-plugin-prettier": "^5.2.1",
+    "eslint-plugin-react": "^7.35.0",
+    "eslint-plugin-react-hooks": "^4.6.2",
+    "eslint-plugin-react-refresh": "^0.4.7",
+    "husky": "^9.1.4",
+    "lint-staged": "^15.2.8",
+    "prettier": "^3.3.3",
+    "vite": "^5.3.4"
+  },
+  "eslintConfig": {
+    "extends": [
+      "airbnb",
+      "prettier",
+      "plugin:react/recommended",
+      "plugin:react-hooks/recommended"
+    ]
+  },
+  "husky": {
+    "hooks": {
+      "pre-commit": "lint-staged"
+    }
+  },
+  "lint-staged": {
+    "*.{js,jsx}": [
+      "npm run lint:fix",
+      "npm run format",
+      "git add ."
+    ],
+    "*.{json,html}": [
+      "npm run format",
+      "git add ."
+    ]
+  }
+}

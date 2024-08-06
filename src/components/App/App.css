@@ -1,0 +1,226 @@
+*{
+    box-sizing: border-box;
+}
+
+body {
+    margin: 0;
+}
+
+.newmoviesapp {
+    height: 100vh;
+    max-width: 1000px;
+    width: 100%;
+    align-items: center;
+    background-color: white;
+    margin: 0 auto;
+}
+
+.header {
+    left: 0;
+    min-height: 80px;
+    width: 100%;
+    align-items: center;
+    background-color: white;
+    display: flex;
+    justify-content: center;
+    position: fixed;
+    z-index: 51;
+}
+
+.header__search,
+.header__rated {
+    width: 80px;
+    padding: 10px;
+    border: none;
+    cursor: pointer;
+    font-size: 18px;
+    color: silver;
+    border-bottom: 2px solid silver;
+    background-color: white;
+}
+
+.header__search.active,
+.header__rated.active {
+    color: blue;
+    border-bottom: 2px solid blue;
+}
+
+.movieslist {
+    margin: 0;
+    padding: 20px 0 100px 0;
+    list-style: none;
+    display: grid;
+    grid-auto-rows: 280px;
+    grid-template-columns: repeat(2, 1fr);
+    gap: 40px;
+    }
+    
+    .movieslist__input {
+    width: 100%;
+    height: 24px;
+    border-radius: 4px;
+    padding-left: 10px;
+    }
+    
+    .top {
+    height: 100%;
+    padding-top: 80px;
+    padding-right: 20px;
+    padding-left: 20px;
+    overflow: auto;
+    scrollbar-width: none;
+    }
+    
+    .top_flex {
+    display: flex;
+    justify-content: center;
+    }
+
+    .moviesitem {
+    overflow: hidden;
+    box-sizing: border-box;
+    box-shadow: 0px 0px 15px silver;
+    display: flex;
+}
+
+.moviesitem__left {
+    width: 180px;
+    height: 100%;
+    align-items: center;
+    justify-content: center;
+    display: flex;
+}
+
+.moviesitem__left-img {
+    height: 100%;
+    width: 100%;
+    box-shadow: 5px 0 10px silver;
+}
+
+.moviesitem__right {
+    display: flex;
+    flex: 1;
+    flex-direction: column;
+}
+
+.moviesitem__right-top {
+    align-items: center;
+    padding: 10px 10px 0 20px;
+    justify-content: space-between;
+    display: flex;
+}
+
+.moviesitem__right-top__tittle {
+    margin: 0;
+    font-size: 20px;
+    font-weight: 200;
+    line-height: 28px;
+    text-wrap: nowrap;
+}
+
+.moviesitem__right-top__circle {
+    width: 30px;
+    height: 30px;
+    padding: 2px;
+    font-size: 16px;
+    font-weight: 600;
+    border-radius: 50%;
+    align-items: center;
+    cursor: context-menu;
+    border: 2px solid white;
+    display: flex;
+    justify-content: center;
+}
+
+.moviesitem__right-bottom {
+    height: 100%;
+    padding: 0px 10px 10px 20px;
+    display: flex;
+    flex-direction: column;
+}
+
+.moviesitem__right-bottom__date {
+    color: silver;
+    font-size: 12px;
+    line-height: 22px;
+}
+
+.helper {
+    display: flex;
+    gap: 8px;
+}
+
+.moviesitem__right-bottom__janrs {
+    height: 20px;
+    margin-top: 6px;
+    margin-bottom: 6px;
+}
+
+.moviesitem__right-bottom__informations {
+    margin: 0;
+    height: 120px;
+    font-size: 12px;
+    font-weight: 600;
+    line-height: 22px;
+}
+
+.moviesitem__right-bottom__stars {
+    display: flex;
+    align-items: center; 
+    width: 240px;
+    flex: 1;
+}
+
+:where(.css-dev-only-do-not-override-1pg9a38).ant-rate .ant-rate-star:not(:last-child) {
+    margin-inline-end: 4px;
+}
+
+.paginationbottom {
+    width: 100%;
+    left: 50%;
+    translate: -50%;
+    padding-top: 20px;
+    min-height: 60px;
+    background-color: white;
+    position: fixed;
+    bottom: 0;
+    z-index: 51;
+}
+
+.ant-pagination-item a {
+    color: black !important;
+}
+
+.ant-pagination-item-active {
+    border: none !important;
+}
+
+.ant-pagination-item-active a {
+    color: white !important;
+    background-color: blue;
+    border-radius: 30%;
+}
+
+@media screen and (max-width: 1000px) {
+    .moviesitem__left {
+        width: 60px;
+        height: 90px;
+
+    }
+
+    .moviesitem__right-bottom__informations {
+        transform: translate(-80px, 20px);
+    }
+
+    .moviesitem__left {
+        margin: 10px;
+    }
+
+    .movieslist {
+        grid-template-columns: 1fr;
+    }
+
+    .moviesitem__right-bottom__stars {
+        align-self: flex-end;
+    }
+}
